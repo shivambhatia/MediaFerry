@@ -11,7 +11,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { Container, Row, Col } from 'reactstrap';
 
-
+import PermContactCalendarOutlinedIcon from '@material-ui/icons/PermContactCalendarOutlined';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -47,7 +47,13 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
-    backgroundColor:"white"
+    backgroundColor:"white",
+    background:"white",
+    height:"100vh",
+    flexWrap:"nowrap",
+    alignItems:"center",
+    // margin:20,
+    overflowX:"hidden"
   },
   image: {
     backgroundImage: 'url(https://source.unsplash.com/random)',
@@ -57,8 +63,9 @@ const useStyles = makeStyles((theme) => ({
 
     backgroundPosition: 'center',
     
-   
+ 
   },
+  text:{fontSize:theme.typography.body1.fontSize},
   row:{
     alignContent:"space-between",
     backgroundColor:"red"
@@ -66,19 +73,14 @@ const useStyles = makeStyles((theme) => ({
   },
 
   paper: {
-
-    display: 'flex',
+display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-   
-    
-   
-
-  },
+    },
   textField: {
     justifyContent:"center",
-    height:"60px",
-    width:"60%"
+    marginLeft:8
+   
   },
   imagePlace: {
     margin: theme.spacing(20),
@@ -129,40 +131,41 @@ export default function SignInSide() {
   const classes = useStyles();
 
   return (
-    <Grid md={12} xs={12} sm={12} container  direction="row" item style={{background:"white",height:"100vh",flexWrap:"nowrap",alignItems:"center",margin:20}} className={classes.root}>
+    
+    <Grid md={12} xs={12} sm={12} container   direction="row" item  className={classes.root}>
       
       <Grid item xs={12} sm={4} md={4} style={{height:"100vh",alignItems:"flex-end",position:"relative"}}>
-        <Grid xs={12} md={12} sm={12}  style={{height:200,width:"100%",position:"absolute",bottom:0}}>
-        
+        <Grid xs={12} md={12} sm={12}  style={{position:"absolute",bottom:0}}>
+        <img  src={StudyImage} style={{height:"auto",maxWidth:"100%",objectFit:"contain"}} alt="fireSpot"/>
+        </Grid>
+    </Grid>
+        <Grid item xs={12} sm={12} md={4} component={Paper} container justify="center" style={{height:600,width:300,display:"block",padding:24,boxShadow:"box-shadow:inset 0 -3em 3em rgba(0,0,0,0.1), 0 0  0 2px rgb(255,255,255),0.3em 0.3em 1em rgba(0,0,0,0.3)"}}>
+           <Grid  md={10} container justify="center" style={{maxWidth:"100%",padding:24}}>
 
-      <img  src={StudyImage} style={{height:"100%",width:"100%"}} alt="fireSpot"/>
-      </Grid>
-
-</Grid>
-   
-      <Grid item xs={12} sm={8} md={3} component={Paper} container justify="center" style={{height:"400px",background:"lightblue",display:"flex"}}>
-
-                <Grid md={12} xs={12}  sm={12} item className={classes.paper} 
- >
-                           <img  src={AppLogo} style={{height:"60%",width:'90%'}} alt="fireSpot"/>
-                          
-                </Grid>
-                <Avatar alt="Travis Howard" src={Microsoft} />
+          
+                <img  src={AppLogo} style={{objectFit:"contain",width:200}} alt="fireSpot"/>
+              <Grid md={12} sm={12} xs={12} item container justify="center">
+                <Grid   style={{display:"block",paddingTop:24}}>
+               <Typography>Login With</Typography>
+                <Grid container spacing={2} style={{display:"flex",marginTop:10}}>
+                <Avatar alt="Travis Howard" src={Microsoft} style={{marginRight:16}}/>
                 
-                <Avatar alt="Cindy Baker" src={Google} /> 
-
+                <Avatar alt="Cindy Baker" src={Google} />
+                </Grid> 
+                </Grid>
+                </Grid>
                 <div className={classes.margin}>
-                    <Grid container style={{}}>
+                    <Grid container >
                         
                         <Grid item md={true} sm={true} xs={true}>
                               <TextField
                                   id="outlined-with-placeholder"
-                                  label="With placeholder"
-                                  placeholder="Placeholder"
+                                  label="UserName"
+                                  placeholder="UserName"
                                   className={classes.textField}
                                   margin="normal"
                                   variant="outlined"
-                
+                                 fullWidth
                                   />
 
                          </Grid>
@@ -172,44 +175,48 @@ export default function SignInSide() {
                         <Grid item md={true} sm={true} xs={true}>
                         <TextField
                             id="outlined-with-placeholder"
-                            label="With placeholder"
-                            placeholder="Placeholder"
+                            label="Password"
+                            placeholder="Password"
+                            type="password"
                             className={classes.textField}
                             margin="normal"
                             variant="outlined"
-          
+                            fullWidth
                             />
                         </Grid>
                     </Grid>
+                   
+                    <Grid container justify="center" style={{ marginTop: '10px' }}>
+                        <Button variant="contained" color="primary"  fullWidth style={{ textTransform: "none",background:"orange" ,padding:16}}>Login</Button>
+                    </Grid>
                     <Grid container alignItems="center" justify="space-between">
-                        <Grid item>
-                            <FormControlLabel control={
-                                <Checkbox
+                        <Grid item style={{margin:0,display:"flex"}}>
+                            <Checkbox
                                     color="primary"
                                 />
-                            } label="Remember me" />
+                           <Typography style={{marginTop:10,marginRight:20}}>Remember me </Typography>
                         </Grid>
                         <Grid item>
-                            <Button disableFocusRipple disableRipple style={{ textTransform: "none" }} variant="text" color="primary">Forgot password ?</Button>
+                            <Button disableFocusRipple disableRipple style={{ textTransform: "none" ,padding:0}} variant="text" color="primary">Forgot password ?</Button>
                         </Grid>
                     </Grid>
-                    <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <Button variant="outlined" color="primary" style={{ textTransform: "none" }}>Login</Button>
+                    <Grid md={12} sm={12} xs={12} container item style={{padding:24,display:"flex"}}>
+                      <PermContactCalendarOutlinedIcon fontSize="small" style={{marginRight:8}}/>
+                      <Typography className={classes.text}>Don't have Account? Create Now!</Typography>
                     </Grid>
+
                 </div>
                 
-             
+                </Grid>
               </Grid>
              
              
-      <Grid item xs={12} sm={4} md={5} style={{height:"100vh",alignItems:"flex-end",position:"relative"}}>
-        <Grid xs={12} md={12} sm={12}  style={{height:200,width:"100%",position:"absolute",bottom:0}}>
-        
-
-      <img  src={BoyStudy} style={{height:"100%",width:"100%"}} alt="fireSpot"/>
+      <Grid item xs={12} sm={4} md={4} container justify="flex-end"  item style={{height:"100vh",alignItems:"flex-end",position:"relative"}}>
+        {/* <Grid xs={12} md={12} sm={12} item container justfiy="flex-end"   style={{position:"absolute",bottom:0,right:0}}> */}
+            <img  src={StudyImage} style={{height:"auto",maxWidth:"100%",objectFit:"contain"}} alt="fireSpot"/>
+      {/* </Grid> */}
       </Grid>
-         </Grid>
-         </Grid>
+      </Grid>
     
   );
 }

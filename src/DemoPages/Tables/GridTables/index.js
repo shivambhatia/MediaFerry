@@ -13,10 +13,11 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import bg1 from '../../../assets/utils/images/originals/city.jpg';
 import MenuTable from './menuTable';
-import { Dropdown } from 'react-bootstrap';
-import Select from '@material-ui/core/Select';
-import Filter from '../../../assets/utils/images/fliter.png';
-import Box from '@material-ui/core/Box';
+import TableBody from '@material-ui/core/TableBody';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import ManualTable from "./table"
 function handleClick(event) {
     event.preventDefault();
     console.info('You clicked a breadcrumb.');
@@ -31,6 +32,10 @@ function handleClick(event) {
       textAlign: 'center',
       color: theme.palette.text.secondary,
     },
+    table: {
+      minWidth: 650,
+    },
+  
   }));
 
 const styles = (theme) => ({
@@ -69,46 +74,47 @@ class MuiVirtualizedTable extends React.PureComponent {
     rowHeight: 48,
   };
 
-  getRowClassName = ({ index }) => {
-    const { classes, onRowClick } = this.props;
+  // getRowClassName = ({ index }) => {
+  //   const { classes, onRowClick } = this.props;
 
-    return clsx(classes.tableRow, classes.flexContainer, {
-      [classes.tableRowHover]: index !== -1 && onRowClick != null,
-    });
-  };
+  //   return clsx(classes.tableRow, classes.flexContainer, {
+  //     [classes.tableRowHover]: index !== -1 && onRowClick != null,
+  //   });
+  // };
 
-  cellRenderer = ({ cellData, columnIndex }) => {
-    const { columns, classes, rowHeight, onRowClick } = this.props;
-    return (
-      <TableCell
-        component="div"
-        className={clsx(classes.tableCell, classes.flexContainer, {
-          [classes.noClick]: onRowClick == null,
-        })}
-        variant="body"
-        style={{ height: rowHeight }}
-        align={(columnIndex != null && columns[columnIndex].numeric) || false ? 'right' : 'left'}
-      >
-        {cellData}
-      </TableCell>
-    );
-  };
+  // cellRenderer = ({ cellData, columnIndex }) => {
+  //   const { columns, classes, rowHeight, onRowClick } = this.props;
+  //   return (
+  //     <TableCell
+  //       component="div"
+  //       className={clsx(classes.tableCell, classes.flexContainer, {
+  //         [classes.noClick]: onRowClick == null,
+  //       })}
+  //       variant="body"
+  //       style={{ height: rowHeight }}
+  //       align={(columnIndex != null && columns[columnIndex].numeric) || false ? 'right' : 'left'}
+  //     >
+  //       {cellData}
+  //     </TableCell>
+  //   );
+  // };
 
-  headerRenderer = ({ label, columnIndex }) => {
-    const { headerHeight, columns, classes } = this.props;
+  // headerRenderer = ({ label, columnIndex }) => {
+  //   const { headerHeight, columns, classes } = this.props;
 
-    return (
-      <TableCell
-        component="div"
-        className={clsx(classes.tableCell, classes.flexContainer, classes.noClick)}
-        variant="head"
-        style={{ height: headerHeight }}
-        align={columns[columnIndex].numeric || false ? 'right' : 'left'}
-      >
-        <span>{label}</span>
-      </TableCell>
-    );
-  };
+  //   return (
+  //     <TableCell
+  //       component="div"
+  //       className={clsx(classes.tableCell, classes.flexContainer, classes.noClick)}
+  //       variant="head"
+  //       style={{ height: headerHeight }}
+  //       align={columns[columnIndex].numeric || false ? 'right' : 'left'}
+  //       style={{padding:40}}
+  //     >
+  //       <span>{label}</span>
+  //     </TableCell>
+  //   );
+  // };
 
   render() {
     const { classes, columns, rowHeight, headerHeight, ...tableProps } = this.props;
@@ -151,22 +157,22 @@ class MuiVirtualizedTable extends React.PureComponent {
   }
 }
 
-MuiVirtualizedTable.propTypes = {
-  classes: PropTypes.object.isRequired,
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      dataKey: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      numeric: PropTypes.bool,
-      width: PropTypes.number.isRequired,
-    }),
-  ).isRequired,
-  headerHeight: PropTypes.number,
-  onRowClick: PropTypes.func,
-  rowHeight: PropTypes.number,
-};
+// MuiVirtualizedTable.propTypes = {
+//   classes: PropTypes.object.isRequired,
+//   columns: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       dataKey: PropTypes.string.isRequired,
+//       label: PropTypes.string.isRequired,
+//       numeric: PropTypes.bool,
+//       width: PropTypes.number.isRequired,
+//     }),
+//   ).isRequired,
+//   headerHeight: PropTypes.number,
+//   onRowClick: PropTypes.func,
+//   rowHeight: PropTypes.number,
+// };
 
-const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
+// const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
 
 // ---
 
@@ -239,8 +245,12 @@ export default function GridTables() {
         </Grid>
       </Grid>
 
-                </Grid>
-    <Paper style={{ height: 400, width: '100%' ,padding:"20px 0px 10px 20px"}}>
+       </Grid>
+       
+    {/* <Paper style={{ height: 400, width: '100%' ,padding:"20px 0px 10px 20px"}}>
+      <Grid md={12} sm={12} xs={12} container >
+
+     
       <VirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
@@ -248,44 +258,45 @@ export default function GridTables() {
         
         columns={[
           {
-            width: 200,
-            label: 'Campaign',
-            dataKey: 'campaign',
-            
+            width: "max-content",
+            label: 'Compaign',
+            dataKey: 'dessert',
           },
           {
-            width: 120,
+            width: "max-content",
             label: 'Client',
-            dataKey: 'client',
+            dataKey: 'calories',
             numeric: true,
           },
           {
-            width: 120,
-            label: 'Requested',
-            dataKey: 'requested',
+            width: "max-content",
+            label: 'Requested by',
+            dataKey: 'fat',
             numeric: true,
           },
           {
-            width: 200,
+            width: "max-content",
             label: 'Next Due Date',
-            dataKey: 'nextduedate',
+            dataKey: 'carbs',
             numeric: true,
           },
           {
-            width: 120,
+            width: "max-content",
             label: 'Notification',
-            dataKey: 'notification',
+            dataKey: 'protein',
             numeric: true,
           },
           {
-            width: 120,
+            width: "max-content",
             label: 'Action',
-            dataKey: 'action',
+            dataKey: 'protein',
             numeric: true,
           },
         ]}
       />
-    </Paper>
+      </Grid>
+    </Paper> */}
+    <ManualTable/>
 
     </React.Fragment>
   );
