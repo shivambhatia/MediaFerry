@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import {Table} from '@material-ui/core/Table';
+import {Table} from '@material-ui/core';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -68,8 +68,8 @@ export default function CustomizedTables() {
               </StyledTableCell>
               <StyledTableCell align="right">{row.calories}</StyledTableCell>
               <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right"><Button>{row.notifications}
-                  </Button></StyledTableCell>
+              <StyledTableCell align="right">{row.notifications}
+                </StyledTableCell>
               <StyledTableCell align="right">{row.protein}</StyledTableCell>
             </StyledTableRow>
           ))}
