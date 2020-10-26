@@ -77,17 +77,14 @@ class FormGrid extends React.Component {
 
     </Grid>
   
-<Grid md={6} xs={12} sm={12} item style={{display:"grid"}}>
-<TextField id="outlined-basic" label="Username" variant="outlined" style={{height:15}}/>
-<TextField id="outlined-basic" label="Email" variant="outlined" style={{height:15}}/>
-<Grid md={4} item spacing={5}
-  direction="column"
-  justify="flex-end"
-   style={{display:"flex",height:20}}>
-<Button variant="contained" color="primary" style={{padding:5}}>
+<Grid md={6} xs={12} sm={12} item style={{display:"grid",position:"relative"}}>
+<TextField id="outlined-basic" label="Username" variant="outlined"  style={{marginTop:10}}/>
+<TextField id="outlined-basic" label="Email" variant="outlined"  style={{marginTop:10}}/>
+<Grid md={12} item   direction="column" justify="flex-end" container style={{display:"flex",height:20}}>
+    <Button variant="contained" color="primary" style={{padding:5,width:100,position:"absolute",right:0,bottom:0,background:"#CC3399",border:"#CC3399"}}>
         SAVE
       </Button>
-      </Grid>
+</Grid>
 
     {/* <TextField variant="contained" name="name">
         name
