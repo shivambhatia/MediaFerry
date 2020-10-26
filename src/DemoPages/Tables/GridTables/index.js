@@ -13,7 +13,11 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import bg1 from '../../../assets/utils/images/originals/city.jpg';
 import MenuTable from './menuTable';
-
+import TableBody from '@material-ui/core/TableBody';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import ManualTable from "./table"
 function handleClick(event) {
     event.preventDefault();
     console.info('You clicked a breadcrumb.');
@@ -28,6 +32,10 @@ function handleClick(event) {
       textAlign: 'center',
       color: theme.palette.text.secondary,
     },
+    table: {
+      minWidth: 650,
+    },
+  
   }));
 
 const styles = (theme) => ({
@@ -66,46 +74,47 @@ class MuiVirtualizedTable extends React.PureComponent {
     rowHeight: 48,
   };
 
-  getRowClassName = ({ index }) => {
-    const { classes, onRowClick } = this.props;
+  // getRowClassName = ({ index }) => {
+  //   const { classes, onRowClick } = this.props;
 
-    return clsx(classes.tableRow, classes.flexContainer, {
-      [classes.tableRowHover]: index !== -1 && onRowClick != null,
-    });
-  };
+  //   return clsx(classes.tableRow, classes.flexContainer, {
+  //     [classes.tableRowHover]: index !== -1 && onRowClick != null,
+  //   });
+  // };
 
-  cellRenderer = ({ cellData, columnIndex }) => {
-    const { columns, classes, rowHeight, onRowClick } = this.props;
-    return (
-      <TableCell
-        component="div"
-        className={clsx(classes.tableCell, classes.flexContainer, {
-          [classes.noClick]: onRowClick == null,
-        })}
-        variant="body"
-        style={{ height: rowHeight }}
-        align={(columnIndex != null && columns[columnIndex].numeric) || false ? 'right' : 'left'}
-      >
-        {cellData}
-      </TableCell>
-    );
-  };
+  // cellRenderer = ({ cellData, columnIndex }) => {
+  //   const { columns, classes, rowHeight, onRowClick } = this.props;
+  //   return (
+  //     <TableCell
+  //       component="div"
+  //       className={clsx(classes.tableCell, classes.flexContainer, {
+  //         [classes.noClick]: onRowClick == null,
+  //       })}
+  //       variant="body"
+  //       style={{ height: rowHeight }}
+  //       align={(columnIndex != null && columns[columnIndex].numeric) || false ? 'right' : 'left'}
+  //     >
+  //       {cellData}
+  //     </TableCell>
+  //   );
+  // };
 
-  headerRenderer = ({ label, columnIndex }) => {
-    const { headerHeight, columns, classes } = this.props;
+  // headerRenderer = ({ label, columnIndex }) => {
+  //   const { headerHeight, columns, classes } = this.props;
 
-    return (
-      <TableCell
-        component="div"
-        className={clsx(classes.tableCell, classes.flexContainer, classes.noClick)}
-        variant="head"
-        style={{ height: headerHeight }}
-        align={columns[columnIndex].numeric || false ? 'right' : 'left'}
-      >
-        <span>{label}</span>
-      </TableCell>
-    );
-  };
+  //   return (
+  //     <TableCell
+  //       component="div"
+  //       className={clsx(classes.tableCell, classes.flexContainer, classes.noClick)}
+  //       variant="head"
+  //       style={{ height: headerHeight }}
+  //       align={columns[columnIndex].numeric || false ? 'right' : 'left'}
+  //       style={{padding:40}}
+  //     >
+  //       <span>{label}</span>
+  //     </TableCell>
+  //   );
+  // };
 
   render() {
     const { classes, columns, rowHeight, headerHeight, ...tableProps } = this.props;
@@ -148,22 +157,22 @@ class MuiVirtualizedTable extends React.PureComponent {
   }
 }
 
-MuiVirtualizedTable.propTypes = {
-  classes: PropTypes.object.isRequired,
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      dataKey: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      numeric: PropTypes.bool,
-      width: PropTypes.number.isRequired,
-    }),
-  ).isRequired,
-  headerHeight: PropTypes.number,
-  onRowClick: PropTypes.func,
-  rowHeight: PropTypes.number,
-};
+// MuiVirtualizedTable.propTypes = {
+//   classes: PropTypes.object.isRequired,
+//   columns: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       dataKey: PropTypes.string.isRequired,
+//       label: PropTypes.string.isRequired,
+//       numeric: PropTypes.bool,
+//       width: PropTypes.number.isRequired,
+//     }),
+//   ).isRequired,
+//   headerHeight: PropTypes.number,
+//   onRowClick: PropTypes.func,
+//   rowHeight: PropTypes.number,
+// };
 
-const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
+// const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
 
 // ---
 
@@ -228,44 +237,56 @@ export default function GridTables() {
         </Grid>
       </Grid>
 
-                </Grid>
-    <Paper style={{ height: 400, width: '100%' ,padding:"20px 0px 10px 20px"}}>
+       </Grid>
+       
+    {/* <Paper style={{ height: 400, width: '100%' ,padding:"20px 0px 10px 20px"}}>
+      <Grid md={12} sm={12} xs={12} container >
+
+     
       <VirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
         columns={[
           {
-            width: 200,
-            label: 'Dessert',
+            width: "max-content",
+            label: 'Compaign',
             dataKey: 'dessert',
           },
           {
-            width: 120,
-            label: 'Calories\u00A0(g)',
+            width: "max-content",
+            label: 'Client',
             dataKey: 'calories',
             numeric: true,
           },
           {
-            width: 120,
-            label: 'Fat\u00A0(g)',
+            width: "max-content",
+            label: 'Requested by',
             dataKey: 'fat',
             numeric: true,
           },
           {
-            width: 120,
-            label: 'Carbs\u00A0(g)',
+            width: "max-content",
+            label: 'Next Due Date',
             dataKey: 'carbs',
             numeric: true,
           },
           {
-            width: 120,
-            label: 'Protein\u00A0(g)',
+            width: "max-content",
+            label: 'Notification',
+            dataKey: 'protein',
+            numeric: true,
+          },
+          {
+            width: "max-content",
+            label: 'Action',
             dataKey: 'protein',
             numeric: true,
           },
         ]}
       />
-    </Paper>
+      </Grid>
+    </Paper> */}
+    <ManualTable/>
 
     </React.Fragment>
   );
