@@ -177,6 +177,7 @@ export default function SignInSide() {
                             id="outlined-with-placeholder"
                             label="Password"
                             placeholder="Password"
+                            type="password"
                             className={classes.textField}
                             margin="normal"
                             variant="outlined"
