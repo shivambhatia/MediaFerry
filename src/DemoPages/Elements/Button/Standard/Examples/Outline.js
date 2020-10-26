@@ -304,7 +304,6 @@ class ButtonsStandardOutline extends Component {
                                         <LaddaButton className="mb-2 mr-2 btn btn-outline-light"
                                                      loading={this.state.expSlideLeft}
                                                      onClick={() => this.toggle('expSlideLeft')}
-
                                                      data-style={SLIDE_LEFT}
                                         >
                                             Slide Left

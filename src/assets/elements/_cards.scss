@@ -216,7 +216,11 @@
   padding: ($card-spacer-y * 2) ($card-spacer-x * 2);
   height: auto;
 }
-
+.card-header-lg2 {
+  padding-left: ($card-spacer-y * 2);
+  padding-top: 1;
+  height: auto;
+}
 .sticky-active-class {
   .sticky-inner-wrapper {
     & > div {

@@ -10,14 +10,15 @@ class FormElementsSticky extends React.Component {
 
     render() {
         return (
-            <Fragment>
-                <PageTitle
-                    heading="Forms Sticky Headers"
-                    subheading="Add sticky headers in forms sections!"
-                    icon="lnr-map text-info"
-                />
-                <FormStickyBasic/>
-            </Fragment>
+            <FormStickyBasic/>
+            // <Fragment>
+            //     <PageTitle
+            //         heading="Projects"
+            //         subheading="Add sticky headers in forms sections!"
+            //         icon="lnr-map text-info"
+            //     />
+            //     <FormStickyBasic/>
+            // </Fragment>
         )
     }
 }

@@ -13,7 +13,10 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import bg1 from '../../../assets/utils/images/originals/city.jpg';
 import MenuTable from './menuTable';
-
+import { Dropdown } from 'react-bootstrap';
+import Select from '@material-ui/core/Select';
+import Filter from '../../../assets/utils/images/fliter.png';
+import Box from '@material-ui/core/Box';
 function handleClick(event) {
     event.preventDefault();
     console.info('You clicked a breadcrumb.');
@@ -214,17 +217,25 @@ export default function GridTables() {
      
         
        
-        <Grid item xs={3}tyle={{padding:"20px 0px 10px 20px",}}>
-        <Paper className={classes.paper}>xs=3</Paper>
+        <Grid item xs={1}tyle={{padding:"20px 0px 10px 20px",}}>
+        <Box  color="primary.main" clone style={{height:50,width:70}}>
+        <img src={Filter} alt="" style={{height:30,width:40}}/>
+
+                  </Box>
+     
+      
+
+       
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={9}>
+
          
         </Grid>
         
-        <Grid item xs={3}>
-        <img src= "url(' + bg1 + ')"></img>
-          
+        <Grid item xs={2}>
+        <MenuTable/>
+        
         </Grid>
       </Grid>
 
@@ -233,34 +244,43 @@ export default function GridTables() {
       <VirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
+        
+        
         columns={[
           {
             width: 200,
-            label: 'Dessert',
-            dataKey: 'dessert',
+            label: 'Campaign',
+            dataKey: 'campaign',
+            
           },
           {
             width: 120,
-            label: 'Calories\u00A0(g)',
-            dataKey: 'calories',
+            label: 'Client',
+            dataKey: 'client',
             numeric: true,
           },
           {
             width: 120,
-            label: 'Fat\u00A0(g)',
-            dataKey: 'fat',
+            label: 'Requested',
+            dataKey: 'requested',
+            numeric: true,
+          },
+          {
+            width: 200,
+            label: 'Next Due Date',
+            dataKey: 'nextduedate',
             numeric: true,
           },
           {
             width: 120,
-            label: 'Carbs\u00A0(g)',
-            dataKey: 'carbs',
+            label: 'Notification',
+            dataKey: 'notification',
             numeric: true,
           },
           {
             width: 120,
-            label: 'Protein\u00A0(g)',
-            dataKey: 'protein',
+            label: 'Action',
+            dataKey: 'action',
             numeric: true,
           },
         ]}

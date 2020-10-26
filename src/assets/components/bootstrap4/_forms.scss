@@ -126,7 +126,32 @@ select.form-control {
   }
 }
 
+.ui-widget-header {
+ 
+  border: 0px solid #333333;
+  color: #FFFFFF;
+  font-weight: bold;
+ 
+}
+.inp {
+  border:none;
+  border-bottom: 1px solid #1890ff;
+  padding: 5px 10px;
+  outline: none;
+}
 
+[placeholder]:focus::-webkit-input-placeholder {
+  transition: text-indent 0.4s 0.4s ease; 
+  text-indent: -100%;
+  opacity: 1;
+}
+
+
+.half-rule { 
+  margin-left: 0;
+  text-align: left;
+  width: 50%;
+}
 // Form control sizing
 //
 // Build on `.form-control` with modifier classes to decrease or increase the
